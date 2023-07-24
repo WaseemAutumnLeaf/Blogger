@@ -1,14 +1,26 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Login from '@/components/login/login'
+import Blogs from "../components/blogs/blogs"
+import { useRecoilState } from 'recoil';
+import { authenticated as authenticatedAtom } from '@/atoms/atoms';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const [authenticated, setAuthenticated] = useState<boolean>(true)
+  const [authenticated, setAuthenticated] = useRecoilState(authenticatedAtom);
+
+  useEffect(() => {
+    console.log(authenticated);
+  
+    return () => {
+      
+    }
+  }, [])
+  
 
   return (
     <>
@@ -19,7 +31,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <Login />
+        {authenticated? <Blogs /> : <Login />}
       </main>
     </>
   )
