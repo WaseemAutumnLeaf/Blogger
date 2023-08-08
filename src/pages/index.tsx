@@ -6,6 +6,10 @@ import Login from '@/components/login/login'
 import Blogs from "../components/blogs/blogs"
 import { useRecoilState } from 'recoil';
 import { authenticated as authenticatedAtom } from '@/atoms/atoms';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const inter = Inter({ subsets: ['latin'] })
 

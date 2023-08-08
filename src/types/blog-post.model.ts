@@ -1,8 +1,8 @@
 interface BlogPost {
+    id: number;
+    body: string;
     title: string;
-    content: string;
-    author: string;
-    date: string;
+    userId: number;
 }
 
 export type { BlogPost };

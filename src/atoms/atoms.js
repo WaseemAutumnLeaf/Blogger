@@ -24,3 +24,13 @@ export const authenticated = atom({
     key: "authenticated",
     default: false
 })
+
+export const user = atom({
+  key: "user",
+  default: ""
+})
+
+export const userId = atom({
+  key: "userId",
+  default: 0
+})

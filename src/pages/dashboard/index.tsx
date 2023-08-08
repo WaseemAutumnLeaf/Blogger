@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from "./dashboard.module.css";
 import { useRecoilState } from 'recoil';
-import {blogs as blogsAtom} from "../../atoms/atoms";
+import {blogs as blogsAtom, user as userAtom} from "../../atoms/atoms";
 import Link from 'next/link'
 
 interface Blog {
@@ -9,24 +9,9 @@ interface Blog {
   dateAdded: string;
 }
 
-const Dashboard: React.FC = () => {
-  const [userEmail, setUserEmail] = useState<string>('user@example.com');
-  // const [blogs, setBlogs] = useState<Blog[]>([
-  //   { name: 'Blog 1', dateAdded: '2023-07-23' },
-  //   { name: 'Blog 2', dateAdded: '2023-07-24' },
-  //   // Add more blogs here as needed
-  // ]);
-
+const Dashboard = () => {
+  const [user, setUser] = useRecoilState(userAtom);
   const [blogs, setBlogs] = useRecoilState(blogsAtom);
-
-  const handleAddBlog = () => {
-    // const newBlog: Blog = {
-    //   name: `New Blog ${blogs.length + 1}`,
-    //   dateAdded: new Date().toISOString().split('T')[0], // Get the current date in 'YYYY-MM-DD' format
-    // };
-    // setBlogs([...blogs, newBlog]);
-
-  };
 
   const handleDeleteBlog = (index: number) => {
     const updatedBlogs = [...blogs];
@@ -36,7 +21,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className="heading">Welcome, {userEmail}</h2>
+      <h2 className="heading">Welcome, {user}</h2>
 
       <button className={styles.addButton}><Link href="/new">Add New Blog</Link></button>
 

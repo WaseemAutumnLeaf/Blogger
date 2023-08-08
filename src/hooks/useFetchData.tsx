@@ -14,7 +14,7 @@ interface FetchDataResponse {
 }
 
 const useFetchData = (url: string): FetchDataResponse => {
-  const [data, setData] = useState<ApiResponse[]>([]);
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

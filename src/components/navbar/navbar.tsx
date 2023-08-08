@@ -7,9 +7,16 @@ type Props = {}
 const Navbar = (props: Props) => {
   return (
     <ul className={styles.navbar}>
+      <div className={styles.link}>
         <li><Link href="/">Home</Link></li>
+      </div>
+      <div className={styles.link}>
         <li><Link href="/dashboard">Dashboard</Link></li>
-        <li>Log Out</li>
+      </div>
+      <div className={styles.link}>
+        <li><Link href="/">Log Out</Link></li>
+      </div>
+
     </ul>
   )
 }

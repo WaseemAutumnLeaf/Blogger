@@ -12,7 +12,6 @@ const BlogCard = (post:any) => {
     const [postData, setPostData] = useState({})
 
     useEffect(() => {
-        console.log(post.post.title)
         setPostData({
         author: post.post.author,
         title: post.post.title,
@@ -32,9 +31,9 @@ const BlogCard = (post:any) => {
       <Typography gutterBottom variant="h5" component="div">
         {postData.title}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
+      {/* <Typography variant="body2" color="text.secondary">
         {postData.author} - {postData.date}
-      </Typography>
+      </Typography> */}
     </CardContent>
   </Card>
   )

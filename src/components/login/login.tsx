@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./login.module.css"
-import { authenticated as authenticatedAtom } from '@/atoms/atoms';
+import { authenticated as authenticatedAtom, user as userAtom, userId as userIdAtom } from '@/atoms/atoms';
 import { useRecoilState } from 'recoil';
 
 interface LoginProps {
@@ -10,18 +10,49 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = () => {
 
   const [authenticated, setAuthenticated] = useRecoilState(authenticatedAtom);
+  const [user, setUser] = useRecoilState<string>(userAtom);
+  const [userId, setUserId] = useRecoilState<number>(userIdAtom);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [disabled, setDisabled] = useState(true);
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  // const [userId, setUserId] = useState<number|null>(null);
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [userList, setUserList] = useState([
+    {
+      id: 1,
+      email: "waseem@al.co.za",
+      password: "Fletcher24"
+    },
+    {
+      id: 2,
+      email: "austin@al.co.za",
+      password: "Austin123!"
+    },
+    {
+      id: 3,
+      email: "morgan@al.co.za",
+      password: "Morgan123!"
+    },
+  ]);
 
   const handleLogin = () => {
-    console.log(username, password)
-    if ((username === "waseem@al.co.za") && (password === "Fletcher24")){
+    // Find the user with the matching email in the userList
+    const user = userList.find((user) => user.email === username);
+  
+    if (!user) {
+      // User with the provided username doesn't exist
+      console.log("User not found");
+      return;
+    }
+  
+    if (user.password === password) {
+      // Username and password match - successful login
+      setUser(username);
+      setUserId(user.id);
       setAuthenticated(true);
-    } 
-    if (password.length <= 5 ) {
-        alert("Password must be longer than 5 characters")
+    } else {
+      // Password is incorrect
+      console.log("Incorrect password");
     }
   };
 
